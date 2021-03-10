@@ -7,13 +7,8 @@ Main
 	content = "..\Content";
 
 	<Fetching resources>
-	Unzip("https://github.com/pftf/RPi4/releases/download/v1.13/RPi4_UEFI_Firmware_v1.13.zip", "{packages}", "UEFI");
-	Unzip("http://ww1.microchip.com/downloads/en//softwarelibrary/obj-lan95xx-windows/lan9500-wdf-v18.12.18.0.zip", "{packages}\Drivers", "LAN95XX");
-	Unzip("http://ww1.microchip.com/downloads/en//softwarelibrary/obj-lan78xx-windows/lan7800-wdf-v18.12.14.0.zip", "{packages}\Drivers", "LAN78XX");
-	Unzip("https://pi64.win/wp-content/uploads/2019/02/usb-drivers.zip", "{packages}\Drivers", "USB");
-	Unzip(GitHubLatestReleaseAsset("driver1998", "bsp", "rpi-arm64-bsp.zip"), "{packages}\Drivers", "BSP");
-
-	DisplayMarkdown("{packages}\Drivers\USB\license.md");
+	Unzip("https://github.com/pftf/RPi4/releases/download/v1.24/RPi4_UEFI_Firmware_v1.24.zip", "{packages}", "UEFI");
+	Unzip("https://github.com/worproject/RPi-Windows-Drivers/releases/download/v0.6/RPi4_Windows_ARM64_Drivers_v0.6.zip", "{packages}\Drivers", "BSP");
 
 	<Preparing disk layout>
 	Flash("..\..\..\..\Core\gpt.zip", "{Disk}");
@@ -35,7 +30,4 @@ Main
 
 	<Injecting drivers>
 	InjectDrivers("{windowsRoot}", "{packages}\Drivers\BSP");
-	InjectDrivers("{windowsRoot}", "{packages}\Drivers\LAN95XX\ndis650\arm64");
-	InjectDrivers("{windowsRoot}", "{packages}\Drivers\LAN78XX\ndis650\arm64");
-	InjectDrivers("{windowsRoot}", "{packages}\Drivers\USB");
 }
